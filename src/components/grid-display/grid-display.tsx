@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import { GridCell } from "../../game/grid-cell";
 import "./grid-display.scss";
 
@@ -6,29 +5,20 @@ interface GridDisplayProps {
   grid: GridCell[][];
 }
 
-/**
- * Should fit whatever space it is put inside.
- * Should divide that space by grid length/width
- */
 export function GridDisplay({ grid }: GridDisplayProps) {
-  const cells: ReactElement[] = [];
+  const rows = grid.map((row) => <GridRowDisplay row={row} />);
 
-  grid.forEach((row) =>
-    row.forEach((cell) => {
-      cells.push(<GridCellDisplay cell={cell} />);
-    })
-  );
+  return <div className="grid-display">{rows}</div>;
+}
 
-  const gridWidth = grid[0].length; // will always be square
+interface GridRowDisplayProps {
+  row: GridCell[];
+}
 
-  return (
-    <div
-      className="grid-display"
-      style={{ gridTemplateColumns: `repeat(${gridWidth}, 1fr)` }}
-    >
-      {cells}
-    </div>
-  );
+function GridRowDisplay({ row }: GridRowDisplayProps) {
+  const cells = row.map((cell) => <GridCellDisplay cell={cell} />);
+
+  return <div className="grid-row-display">{cells}</div>;
 }
 
 interface GridCellDisplayProps {

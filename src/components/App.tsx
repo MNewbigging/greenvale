@@ -9,9 +9,7 @@ export function App() {
 
   return (
     <div className="app-root">
-      <div className="grid-container">
-        <GridDisplay grid={appState.grid} />
-      </div>
+      <GridDisplay grid={appState.grid} />
     </div>
   );
 }

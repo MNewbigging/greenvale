@@ -2,10 +2,21 @@ import { GridCell, GridCellType } from "./game/grid-cell";
 
 class AppState {
   grid: GridCell[][] = [];
+  route: GridCell[] = [];
 
   constructor() {
     // Setup first mission grid
     this.grid = this.makeFirstMissionGrid();
+  }
+
+  addCellToRoute(cell: GridCell) {
+    // Can ignore cells that are unpassable
+    if (cell.type === GridCellType.Unpassable) {
+      console.log("Cannot go here!");
+      return;
+    }
+
+    // Cell must neighbour the previous cell
   }
 
   private makeFirstMissionGrid() {
@@ -22,6 +33,9 @@ class AppState {
     secondRow[0].isEntry = true;
     secondRow[secondRow.length - 1].isExit = true;
 
+    // Add entry to the route
+    this.route.push(secondRow[0]);
+
     grid.push(firstRow, secondRow, thirdRow);
 
     return grid;
@@ -33,6 +47,12 @@ class AppState {
       row.push(new GridCell(gridCellType));
     }
     return row;
+  }
+
+  private getNeighbours(grid: GridCell[][], cell: GridCell) {}
+
+  private areNeighbours(grid: GridCell[][], a: GridCell, b: GridCell) {
+    //
   }
 }
 

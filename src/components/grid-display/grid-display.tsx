@@ -1,3 +1,4 @@
+import { appState } from "../../app-state";
 import { GridCell } from "../../game/grid-cell";
 import "./grid-display.scss";
 
@@ -33,5 +34,9 @@ function GridCellDisplay({ cell }: GridCellDisplayProps) {
   if (cell.isEntry) displayText = "ENTRY";
   if (cell.isExit) displayText = "EXIT";
 
-  return <div className={classes}>{displayText}</div>;
+  return (
+    <div className={classes} onClick={() => appState.addCellToRoute(cell)}>
+      {displayText}
+    </div>
+  );
 }

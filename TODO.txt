@@ -1,4 +1,10 @@
 
 
 
-- execute route
+Execute route:
+
+- button to execute route enables when it detects the exit is part of route 
+
+- player icon appears on first route cell
+- 1 second per step, player moves along route 
+- when reaching exit, message appears

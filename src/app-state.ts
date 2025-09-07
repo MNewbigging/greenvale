@@ -27,7 +27,7 @@ class AppState {
 
     // This cell cannot already be in the route
     const atIndex = this.route.findIndex((cell) => cell.id === addCell.id);
-    if (atIndex >= 0) {
+    if (atIndex > 0) {
       console.log("Already in route, removing this and all after it");
 
       this.route.splice(atIndex);

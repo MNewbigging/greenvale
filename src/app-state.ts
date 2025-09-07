@@ -26,8 +26,12 @@ class AppState {
     }
 
     // This cell cannot already be in the route
-    if (this.route.find((cell) => cell.id === addCell.id)) {
-      console.log("Already in the route!");
+    const atIndex = this.route.findIndex((cell) => cell.id === addCell.id);
+    if (atIndex >= 0) {
+      console.log("Already in route, removing this and all after it");
+
+      this.route.splice(atIndex);
+      eventListener.fire("route-change", null);
       return;
     }
 
@@ -41,7 +45,7 @@ class AppState {
       console.log("Must be next to previous cell");
     }
 
-    // todo later - What if exit is already in the route?
+    // todo later - What if exit is already in the route? Should it always be the last thing?
   }
 
   private makeGrid() {

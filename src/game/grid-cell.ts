@@ -7,6 +7,7 @@ export enum GridCellType {
 
 export class GridCell {
   id = randomId();
+  index = -1; // to be set by grid when it receives the cells
   isEntry: boolean;
   isExit: boolean;
 

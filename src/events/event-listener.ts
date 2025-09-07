@@ -1,4 +1,5 @@
 export interface EventMap {
+  "route-change": null;
   "game-loaded": null;
   "game-started": null;
 }

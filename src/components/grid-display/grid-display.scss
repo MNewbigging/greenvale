@@ -20,6 +20,10 @@
   justify-content: center;
   align-items: center;
 
+  &.in-route {
+    border: 5px dashed green;
+  }
+
   &.unpassable {
     background-color: black;
   }

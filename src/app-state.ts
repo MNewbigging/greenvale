@@ -18,6 +18,10 @@ class AppState {
     const secondRow = this.makeCellRowOfType(gridWidth, GridCellType.Walkable);
     const thirdRow = this.makeCellRowOfType(gridWidth, GridCellType.Unpassable);
 
+    // First and last cells in second row are the entry and exit
+    secondRow[0].isEntry = true;
+    secondRow[secondRow.length - 1].isExit = true;
+
     grid.push(firstRow, secondRow, thirdRow);
 
     return grid;

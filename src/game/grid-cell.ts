@@ -7,6 +7,8 @@ export enum GridCellType {
 
 export class GridCell {
   id = randomId();
+  isEntry = false;
+  isExit = false;
 
   constructor(public type: GridCellType) {}
 }

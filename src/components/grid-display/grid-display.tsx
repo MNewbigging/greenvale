@@ -28,5 +28,10 @@ interface GridCellDisplayProps {
 function GridCellDisplay({ cell }: GridCellDisplayProps) {
   const classes = ["grid-cell-display", cell.type.toLowerCase()].join(" ");
 
-  return <div className={classes}></div>;
+  let displayText = "";
+
+  if (cell.isEntry) displayText = "ENTRY";
+  if (cell.isExit) displayText = "EXIT";
+
+  return <div className={classes}>{displayText}</div>;
 }

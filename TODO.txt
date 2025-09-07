@@ -1,0 +1,4 @@
+- entry and exit display on cells
+
+- plot route
+- execute route

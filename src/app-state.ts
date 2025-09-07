@@ -1,12 +1,13 @@
+import { Grid } from "./game/grid";
 import { GridCell, GridCellType } from "./game/grid-cell";
 
 class AppState {
-  grid: GridCell[][] = [];
+  grid: Grid;
   route: GridCell[] = [];
 
   constructor() {
     // Setup first mission grid
-    this.grid = this.makeFirstMissionGrid();
+    this.grid = this.makeGrid();
   }
 
   addCellToRoute(cell: GridCell) {
@@ -19,34 +20,26 @@ class AppState {
     // Cell must neighbour the previous cell
   }
 
-  private makeFirstMissionGrid() {
-    const grid: GridCell[][] = [];
+  private makeGrid() {
+    const cells = [
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Walkable, { isEntry: true }),
+      new GridCell(GridCellType.Walkable),
+      new GridCell(GridCellType.Walkable),
+      new GridCell(GridCellType.Walkable),
+      new GridCell(GridCellType.Walkable, { isExit: true }),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+      new GridCell(GridCellType.Unpassable),
+    ];
 
-    const gridWidth = 5;
-
-    // A row of unpassable cells
-    const firstRow = this.makeCellRowOfType(gridWidth, GridCellType.Unpassable);
-    const secondRow = this.makeCellRowOfType(gridWidth, GridCellType.Walkable);
-    const thirdRow = this.makeCellRowOfType(gridWidth, GridCellType.Unpassable);
-
-    // First and last cells in second row are the entry and exit
-    secondRow[0].isEntry = true;
-    secondRow[secondRow.length - 1].isExit = true;
-
-    // Add entry to the route
-    this.route.push(secondRow[0]);
-
-    grid.push(firstRow, secondRow, thirdRow);
-
-    return grid;
-  }
-
-  private makeCellRowOfType(rowLength: number, gridCellType: GridCellType) {
-    const row: GridCell[] = [];
-    for (let i = 0; i < rowLength; i++) {
-      row.push(new GridCell(gridCellType));
-    }
-    return row;
+    return new Grid(cells, 5);
   }
 
   private getNeighbours(grid: GridCell[][], cell: GridCell) {}

@@ -7,8 +7,14 @@ export enum GridCellType {
 
 export class GridCell {
   id = randomId();
-  isEntry = false;
-  isExit = false;
+  isEntry: boolean;
+  isExit: boolean;
 
-  constructor(public type: GridCellType) {}
+  constructor(
+    public type: GridCellType,
+    options?: { isEntry?: boolean; isExit?: boolean }
+  ) {
+    this.isEntry = options?.isEntry ?? false;
+    this.isExit = options?.isExit ?? false;
+  }
 }

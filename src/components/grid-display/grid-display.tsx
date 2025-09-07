@@ -1,13 +1,15 @@
+import { ReactElement } from "react";
 import { appState } from "../../app-state";
+import { Grid } from "../../game/grid";
 import { GridCell } from "../../game/grid-cell";
 import "./grid-display.scss";
 
 interface GridDisplayProps {
-  grid: GridCell[][];
+  grid: Grid;
 }
 
 export function GridDisplay({ grid }: GridDisplayProps) {
-  const rows = grid.map((row) => <GridRowDisplay row={row} />);
+  const rows = grid.rows.map((row) => <GridRowDisplay row={row} />);
 
   return <div className="grid-display">{rows}</div>;
 }
